@@ -1,6 +1,6 @@
 package com.oluwayanmi.library.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,9 +18,11 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-//    private String authorDescription;
+    private String bio;
+
+    @Lob
+    private byte[] authorImage;
 
     @OneToMany(mappedBy = "author")
-    @JsonIgnore
     private List<Book> books;
 }
